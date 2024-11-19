@@ -1,0 +1,26 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# testing
+/coverage
+
+# production
+/build
+
+# Logs
+*.log
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Ignore target folder (backend)
+backend/target/
+
+# Ignore VSCode settings folder
+.vscode/
+
+# Ignore node_modules (frontend)
+frontend/node_modules/
+
+
+
