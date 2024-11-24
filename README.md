@@ -162,15 +162,27 @@ This is a full-stack project built with Spring Boot for the backend and React fo
 
 ### **Backend**
 ```bash
-src/
-├── main/
-│   ├── java/
-│   │   └── com.todo_app/
-│   │       ├── config/             # Configuration files
-│   │       ├── controller/         # REST Controllers
-│   │       ├── entity/             # Entity classes
-│   │       ├── repository/         # JPA Repositories
-│   │       └── service/            # Business logic
-│   └── resources/
-│       ├── application.properties  # Configuration
-└── test/                           # Unit and Integration tests
+src/  
+├── main/  
+│   ├── java/  
+│   │   └── com.todo_app/  
+│   │       ├── config/             # Configuration files  
+│   │       ├── controller/         # REST Controllers  
+│   │       ├── entity/             # Entity classes  
+│   │       ├── repository/         # JPA Repositories  
+│   │       └── service/            # Business logic  
+│   └── resources/  
+│       ├── application.properties  # Configuration  
+│       └── templates/              # Thymeleaf templates  
+└── test/                           # Unit and Integration tests  
+```
+
+### **Frontend**
+```bash
+src/  
+├── components/                     # Reusable components  
+├── pages/                          # Page-specific components  
+├── styles/                         # CSS styles  
+└── api/                            # API integration  
+```
+
