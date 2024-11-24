@@ -173,7 +173,6 @@ src/
 │   │       └── service/            # Business logic  
 │   └── resources/  
 │       ├── application.properties  # Configuration  
-│       └── templates/              # Thymeleaf templates  
 └── test/                           # Unit and Integration tests  
 ```
 
