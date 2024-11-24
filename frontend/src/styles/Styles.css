@@ -25,12 +25,8 @@ body {
 }
 
 /* Title */
-<<<<<<< HEAD
-h1, h2 {
-=======
 h1,
 h2 {
->>>>>>> 70ee6e2 (Auth error correction)
     font-size: 2rem;
     color: #333;
     margin-bottom: 20px;
@@ -263,11 +259,8 @@ p.error {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-<<<<<<< HEAD
-=======
     margin-right: 10px;
     /* Add margin to separate buttons */
->>>>>>> 70ee6e2 (Auth error correction)
 }
 
 .edit-button:hover {
@@ -288,8 +281,6 @@ p.error {
     background-color: #c82333;
 }
 
-<<<<<<< HEAD
-=======
 /* List Item Buttons Wrapper */
 li .button-group {
     display: flex;
@@ -300,7 +291,6 @@ li .button-group {
 }
 
 
->>>>>>> 70ee6e2 (Auth error correction)
 /* Edit Todo Modal */
 .edit-todo-modal {
     background: white;
@@ -392,8 +382,6 @@ li .button-group {
 .logout-button:hover {
     background-color: #c82333;
 }
-<<<<<<< HEAD
-=======
 
 .login-container {
     width: 300px;
@@ -438,4 +426,3 @@ li .button-group {
 .login-container button:hover {
     background: #0056b3;
 }
->>>>>>> 70ee6e2 (Auth error correction)

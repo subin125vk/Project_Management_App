@@ -1,26 +1,5 @@
 package com.todo_app.config;
 
-<<<<<<< HEAD
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-
-@Configuration
-public class WebMvcConfig implements WebMvcConfigurer {
-
- @Value("${react.server.url}")
-    private String reactUrl;
-
-    @Override
-    public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**")
-                .allowedOrigins(reactUrl)  
-                .allowedMethods("GET", "POST", "PUT", "DELETE")  
-                .allowedHeaders("*")  
-                .allowCredentials(true);     }
-}
-=======
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -51,4 +30,3 @@ public class WebMvcConfig {
     }
     
 }
->>>>>>> 70ee6e2 (Auth error correction)
