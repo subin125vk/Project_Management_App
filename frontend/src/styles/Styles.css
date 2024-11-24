@@ -25,7 +25,12 @@ body {
 }
 
 /* Title */
+<<<<<<< HEAD
 h1, h2 {
+=======
+h1,
+h2 {
+>>>>>>> 70ee6e2 (Auth error correction)
     font-size: 2rem;
     color: #333;
     margin-bottom: 20px;
@@ -258,6 +263,11 @@ p.error {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+<<<<<<< HEAD
+=======
+    margin-right: 10px;
+    /* Add margin to separate buttons */
+>>>>>>> 70ee6e2 (Auth error correction)
 }
 
 .edit-button:hover {
@@ -278,6 +288,19 @@ p.error {
     background-color: #c82333;
 }
 
+<<<<<<< HEAD
+=======
+/* List Item Buttons Wrapper */
+li .button-group {
+    display: flex;
+    justify-content: flex-end;
+    /* Align buttons to the right */
+    gap: 10px;
+    /* Add spacing between buttons */
+}
+
+
+>>>>>>> 70ee6e2 (Auth error correction)
 /* Edit Todo Modal */
 .edit-todo-modal {
     background: white;
@@ -369,3 +392,50 @@ p.error {
 .logout-button:hover {
     background-color: #c82333;
 }
+<<<<<<< HEAD
+=======
+
+.login-container {
+    width: 300px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: #f9f9f9;
+    text-align: center;
+}
+
+.login-container h2 {
+    margin-bottom: 20px;
+}
+
+.login-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-container form div {
+    margin-bottom: 15px;
+}
+
+.login-container input {
+    padding: 10px;
+    font-size: 14px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.login-container button {
+    padding: 10px 15px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.login-container button:hover {
+    background: #0056b3;
+}
+>>>>>>> 70ee6e2 (Auth error correction)

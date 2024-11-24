@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from "react";
+<<<<<<< HEAD
 import { Link } from "react-router-dom";  // Remove useNavigate import
+=======
+import { Link } from "react-router-dom"; 
+>>>>>>> 70ee6e2 (Auth error correction)
 import { getProjects, createProject, deleteProject } from "../api/projects";
 import axios from 'axios';
 
@@ -55,6 +59,7 @@ const ProjectsPage = () => {
 
   const handleLogout = async () => {
     try {
+<<<<<<< HEAD
       await api.post('/logout', null, {
         withCredentials: true, 
       });
@@ -66,6 +71,21 @@ const ProjectsPage = () => {
     }
   };
 
+=======
+      await api.post("/api/auth/logout", null, {
+        withCredentials: true,
+      });
+  
+      localStorage.removeItem("token");
+      window.location.href = "/login";
+    } catch (err) {
+      console.error("Logout failed", err);
+      setErrorMessage("Failed to logout. Please try again.");
+    }
+  };
+  
+  
+>>>>>>> 70ee6e2 (Auth error correction)
   return (
     <div>
       <h1>Projects</h1>
