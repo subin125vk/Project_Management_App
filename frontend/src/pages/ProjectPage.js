@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import {
   getProjectById,
   addTodo,
@@ -8,9 +8,20 @@ import {
   updateProject,
   exportProjectToGist,
 } from "../api/projects";
+import axios from "axios";
+
+const API_BASE = process.env.REACT_APP_API_BASE_URL;
+
+const api = axios.create({
+  baseURL: API_BASE,
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
 
 const ProjectPage = () => {
   const { id } = useParams();
+  const navigate = useNavigate(); 
   const [project, setProject] = useState(null);
   const [todoDescription, setTodoDescription] = useState("");
   const [editingTodoId, setEditingTodoId] = useState(null);
@@ -20,7 +31,6 @@ const ProjectPage = () => {
   const [editingTitle, setEditingTitle] = useState(false);
   const [newTitle, setNewTitle] = useState("");
 
-  // Memoize fetchProject to avoid unnecessary re-renders
   const fetchProject = useCallback(async () => {
     try {
       const { data } = await getProjectById(id);
@@ -29,11 +39,11 @@ const ProjectPage = () => {
     } catch (error) {
       console.error("Failed to fetch project:", error);
     }
-  }, [id]); // The function depends on `id`, so it's included in the dependency array
+  }, [id]);
 
   useEffect(() => {
     fetchProject();
-  }, [fetchProject]); // Now `fetchProject` is in the dependency array
+  }, [fetchProject]);
 
   const handleAddTodo = async (e) => {
     e.preventDefault();
@@ -98,6 +108,19 @@ const ProjectPage = () => {
     }
   };
 
+  const handleLogout = async () => {
+    try {
+      await api.post("/api/auth/logout", null, {
+        withCredentials: true,
+      });
+      localStorage.removeItem("token"); 
+      window.location.href = "/login"; 
+    } catch (error) {
+      console.error("Logout failed:", error);
+      setError("Failed to logout. Please try again.");
+    }
+  };
+
   return (
     <div className="project-container">
       {project && (
@@ -118,6 +141,14 @@ const ProjectPage = () => {
             )}
             <button onClick={handleExportToGist}>Export to Gist</button>
           </div>
+
+          <button onClick={handleLogout} className="logout-button">
+            Logout
+          </button>
+          <button onClick={() => navigate(-1)} className="previous-button">
+            Previous Page
+          </button>
+
           <form onSubmit={handleAddTodo} className="add-todo-form">
             <input
               type="text"
