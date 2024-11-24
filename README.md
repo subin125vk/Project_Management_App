@@ -10,7 +10,8 @@ This is a full-stack project built with Spring Boot for the backend and React fo
 1. CRUD operations for projects and ToDos.
 2. Export tasks to GitHub Gists.
 3. Secure login functionality using Spring Security.
-4. Redirection to the React frontend after successful login.
+4. JWT-based session management for authentication.
+5. Session expiration is configurable via `application.properties`.
 
 ### **Frontend (React)**
 1. Modern UI for managing projects and tasks.
@@ -27,48 +28,46 @@ This is a full-stack project built with Spring Boot for the backend and React fo
 
     ```bash
     git clone https://github.com/subin125vk/Project_Management_App.git
-    cd backend  
+    cd backend
     ```
 
 2. **Build the backend:**
 
     ```bash
-    mvn clean install  
+    mvn clean install
     ```
 
 3. **Configure application properties:**
     - Update the `application.properties` file with the following details:
 
     ```properties
-    spring.application.name=todo-app  
-    server.port=8080  
+    spring.application.name=todo-app
+    server.port=8090
 
-    # MySQL Configuration  
-    spring.datasource.url=jdbc:mysql://localhost:3306/todoapp?useSSL=false&serverTimezone=UTC  
-    spring.datasource.username=root  
-    spring.datasource.password=root  
+    # MySQL Configuration
+    spring.datasource.url=jdbc:mysql://localhost:3306/todoapp?useSSL=false&serverTimezone=UTC
+    spring.datasource.username=root
+    spring.datasource.password=root
 
-    # Hibernate Configuration  
-    spring.jpa.hibernate.ddl-auto=update  
-    spring.jpa.show-sql=true  
+    # Hibernate Configuration
+    spring.jpa.hibernate.ddl-auto=update
+    spring.jpa.show-sql=true
 
-    # Security Credentials  
-    security.user.name=root  
-    security.user.password=root  
+    # Frontend URL
+    react.server.url=http://localhost:3000
 
-    # Frontend and Backend URLs  
-    react.server.url=http://localhost:3000  
-    app.url=http://localhost:8080  
+    # GitHub API
+    github.api.url=https://api.github.com/gists
+    github.token=<YOUR_PERSONAL_ACCESS_TOKEN>
 
-    # GitHub API  
-    github.api.url=https://api.github.com/gists  
-    github.token=<YOUR_PERSONAL_ACCESS_TOKEN>  
+    # JWT Configuration
+    jwt.expiration=86400000
     ```
 
 4. **Run the backend:**
 
     ```bash
-    mvn spring-boot:run  
+    mvn spring-boot:run
     ```
 
 ---
@@ -78,26 +77,26 @@ This is a full-stack project built with Spring Boot for the backend and React fo
 1. **Navigate to the frontend directory:**
 
     ```bash
-    cd frontend  
+    cd frontend
     ```
 
 2. **Install dependencies:**
 
     ```bash
-    npm install  
+    npm install
     ```
 
 3. **Set up environment variables:**
     - Create a `.env` file in the frontend directory and add the following:
 
     ```env
-    REACT_APP_API_BASE_URL=http://localhost:8080  
+    REACT_APP_API_BASE_URL=http://localhost:8090
     ```
 
 4. **Start the React development server:**
 
     ```bash
-    npm start  
+    npm start
     ```
 
 ---
@@ -108,14 +107,14 @@ This is a full-stack project built with Spring Boot for the backend and React fo
 - Visit the React application in your browser at:
 
     ```bash
-    http://localhost:3000  
+    http://localhost:3000
     ```
 
 ### **Backend**
 - Access backend APIs at:
 
     ```bash
-    http://localhost:8080  
+    http://localhost:8090
     ```
 
 ---
@@ -123,27 +122,19 @@ This is a full-stack project built with Spring Boot for the backend and React fo
 ## **Login Details**
 
 ### **Default Credentials**
-- Username: `root`
-- Password: `root`
-
-You can change these in the `application.properties` file under:
-
-```properties
-security.user.name  
-security.user.password  
-```
+- By default, user credentials are stored in the database. Use your registered credentials to log in.  
+- No hardcoded user credentials are stored in `application.properties`.
 
 ---
 
-### **Redirection After Login**
+### **JWT Session Management**
+- JWT tokens are used for authentication, with expiration configurable in `application.properties`:
 
-After logging in at the backend (`http://localhost:8080`), you will be redirected to the frontend at the URL specified in the `react.server.url` property in `application.properties`.
+    ```properties
+    jwt.expiration=86400000
+    ```
 
-To customize this redirection, update the following property:
-
-```properties
-react.server.url=http://localhost:<YOUR_PORT>  
-```
+- Expired sessions will require re-authentication.
 
 ---
 
@@ -171,28 +162,15 @@ react.server.url=http://localhost:<YOUR_PORT>
 
 ### **Backend**
 ```bash
-src/  
-├── main/  
-│   ├── java/  
-│   │   └── com.todo_app/  
-│   │       ├── config/             # Configuration files  
-│   │       ├── controller/         # REST Controllers  
-│   │       ├── entity/             # Entity classes  
-│   │       ├── repository/         # JPA Repositories  
-│   │       └── service/            # Business logic  
-│   └── resources/  
-│       ├── application.properties  # Configuration  
-│       └── templates/              # Thymeleaf templates  
-└── test/                           # Unit and Integration tests  
-```
-
-### **Frontend**
-```bash
-src/  
-├── components/                     # Reusable components  
-├── pages/                          # Page-specific components  
-├── styles/                         # CSS styles  
-└── api/                            # API integration  
-```
-
----
+src/
+├── main/
+│   ├── java/
+│   │   └── com.todo_app/
+│   │       ├── config/             # Configuration files
+│   │       ├── controller/         # REST Controllers
+│   │       ├── entity/             # Entity classes
+│   │       ├── repository/         # JPA Repositories
+│   │       └── service/            # Business logic
+│   └── resources/
+│       ├── application.properties  # Configuration
+└── test/                           # Unit and Integration tests
